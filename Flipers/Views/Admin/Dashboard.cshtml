@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <h2 class="text-center fw-bold mb-5">Admin Dashboard</h2>
+
+    <!-- Add Project Form -->
+    <div class="card mb-5">
+        <div class="card-header bg-primary text-white fw-semibold">
+            Add New Project
+        </div>
+        <div class="card-body">
+            <form asp-action="AddProject" asp-controller="Admin" method="post" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="Name" placeholder="Project Name" required />
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" type="file" name="imageFile" required />
+                </div>
+                <div class="col-md-12">
+                    <textarea class="form-control" name="Description" placeholder="Project Description" required></textarea>
+                </div>
+                <div class="col-12 text-end">
+                    <button class="btn btn-success px-4">Add Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Client Form -->
+    <div class="card mb-5">
+        <div class="card-header bg-primary text-white fw-semibold">
+            Add New Client
+        </div>
+        <div class="card-body">
+            <form asp-action="AddClient" asp-controller="Admin" method="post" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="Name" placeholder="Client Name" required />
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="Designation" placeholder="Designation (e.g. CEO)" required />
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" type="file" name="imageFile" required />
+                </div>
+                <div class="col-md-12">
+                    <textarea class="form-control" name="Description" placeholder="Client Description" required></textarea>
+                </div>
+                <div class="col-12 text-end">
+                    <button class="btn btn-success px-4">Add Client</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Contact Form Submissions -->
+<div class="card mb-5">
+    <div class="card-header bg-secondary text-white fw-semibold">
+        Contact Form Submissions
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contact in ViewBag.Contacts)
+                    {
+                        <tr>
+                            <td>@contact.FullName</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.MobileNumber</td>
+                            <td>@contact.City</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Newsletter Subscribers -->
+<div class="card mb-5">
+    <div class="card-header bg-secondary text-white fw-semibold">
+        Newsletter Subscribers
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            @foreach (var sub in ViewBag.Subscriptions)
+            {
+                <li class="list-group-item">@sub.Email</li>
+            }
+        </ul>
+    </div>
+</div>
+
+

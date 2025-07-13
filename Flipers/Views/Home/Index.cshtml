@@ -1,0 +1,72 @@
+﻿@* @model Flipers.ViewModels.LandingPageViewModel *@
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+
+    <!-- Our Project Section -->
+    <h2 class="text-center mb-4 fw-bold">Our Projects</h2>
+    <div class="row g-4">
+        @foreach (var project in Model.Projects)
+        {
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="card shadow-sm h-100">
+                    <img src="@project.ImagePath" class="card-img-top" style="height: 180px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-semibold">@project.Name</h5>
+                        <p class="card-text text-muted small">@project.Description</p>
+                        <a class="btn btn-warning btn-sm" disabled>Read More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Happy Clients Section -->
+    <h2 class="text-center mt-5 mb-4 fw-bold">Happy Clients</h2>
+    <div class="row g-4">
+        @foreach (var client in Model.Clients)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                <div class="card shadow-sm h-100 text-center p-3">
+                    <img src="@client.ImagePath" class="rounded-circle mx-auto" width="80" height="80" style="object-fit: cover;" />
+                    <div class="card-body">
+                        <p class="text-muted small">@client.Description</p>
+                        <h6 class="fw-bold mb-0">@client.Name</h6>
+                        <small class="text-secondary">@client.Designation</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Contact Form -->
+    <h2 class="text-center mt-5 mb-4 fw-bold">Contact Us</h2>
+    <form asp-action="SubmitContact" method="post" class="row g-3">
+        <div class="col-md-6">
+            <input class="form-control" name="FullName" placeholder="Full Name" required />
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" name="Email" placeholder="Email" type="email" required />
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" name="MobileNumber" placeholder="Mobile Number" required />
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" name="City" placeholder="City" />
+        </div>
+        <div class="col-12 text-center">
+            <button class="btn btn-primary px-5">Submit</button>
+        </div>
+    </form>
+
+    <!-- Newsletter Section -->
+    <h2 class="text-center mt-5 mb-3 fw-bold">Subscribe to Newsletter</h2>
+    <form asp-action="Subscribe" method="post" class="d-flex justify-content-center">
+        <input class="form-control w-50 me-2" name="email" placeholder="Enter your email" required />
+        <button class="btn btn-warning">Subscribe</button>
+    </form>
+
+</div>
